@@ -22,7 +22,7 @@ The above copyright notice and this permission notice shall be included in all c
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 # Usage
-To execute the code, you need first to run the script `startup`, which adds the project to your Matlab Path.
+To execute the code, you need first to run the script `startup_v0`, which adds the project to your Matlab Path.
 
 Afterwards, there are the 3 main functions and script that can be used:
 - The function
@@ -38,7 +38,7 @@ Afterwards, there are the 3 main functions and script that can be used:
 
 - The function
     `img_dec = decodeImage(outputFile,reconstructedImage)`
-	takes two inputs, the binary compressed image file and the name of the decoded image
+	takes two inputs, the binary compressed image file and the name of the decoded image. 
 	It decodes the data, returning the array image and saving the image with the reconstructedImage name
 
 - The script file in the v0 folder, executes all 3 functions above.
