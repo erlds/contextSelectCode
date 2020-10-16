@@ -34,13 +34,15 @@ Afterwards, there are the 3 main functions and script that can be used:
 	takes three inputs, the binary image, the context vector and the output bin file name that will contain the compressed image.
 	It encodes the data, writing the compressed image with the header in the outputFile, and returns the rate in bpp.
   
-  Obs: This function also could use a number as input from 1 to 16, indicating how much contexts will be used, considering the JBIG order.
+  Obs: This function also could use a number in the second input from 1 to 16, indicating how many contexts will be used, considering the JBIG order.
 
 - The function
     `img_dec = decodeImage(outputFile,reconstructedImage)`
 	takes two inputs, the binary compressed image file and the name of the decoded image
 	It decodes the data, returning the array image and saving the image with the reconstructedImage name
-  
+
+- The script file in the v0 folder, executes all 3 functions above.
+
 
 # Contact Person
 [Evaristo Ramalho](mailto:evaristo.ramalho@aluno.unb.br)
