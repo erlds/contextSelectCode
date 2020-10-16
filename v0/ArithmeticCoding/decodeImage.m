@@ -1,4 +1,4 @@
-function B = decodeImage(filenameIn)
+function B = decodeImage(filenameIn,reconstructedImage)
 
 bitstream = Bitstream(0);
 bitstream = bitstream.loadBitstream(filenameIn);
@@ -19,3 +19,5 @@ cabac.BACEngineDecoder.bitstream = bitstream;
 B = zeros(sy,sx,'logical');
 
 [B,cabac] = decodeImageBAC(B, cabac);
+
+imwrite(B,reconstructedImage);

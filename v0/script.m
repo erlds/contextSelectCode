@@ -1,47 +1,29 @@
 %Opens the input image.
-im_dir = 'C:\Users\evari\Desktop\Mestrado_PPGEE\contextSelectAlgorithm\Used_Images\';
-im_name = 'goldhill.png';
-A = imread([im_dir im_name]);
-A = binarizeImage(A);
-numberOfContexts = 7;
+imDir = [pwd '\..\Used_Images\'];
+imName = 'watch.png';
 
-%Encodes it with numberOfContexts contexts.
-tStart = tic;
-rbpp = encodeImage(A, numberOfContexts,[im_name(1:end-4) '.bin']);
-timeEncoder = toc(tStart);
+reconstructedImage = [imName(1:end-4) '_reconstructed.png'];
+outputFile = [imName(1:end-4) '_binary.bin'];
 
-tStart = tic;
-B = decodeImage([im_name(1:end-4) '.bin']);
-timeDecoder = toc(tStart);
+img = imread([imDir imName]);
 
-disp(['Image :              ' im_name(1:end-4)])
-disp(['Number of contexts:  ' num2str(numberOfContexts) ''])
-disp(['Rate :               ' num2str(rbpp,'%1.3f') ' bpp.'])
-disp(['Time Encoder :       ' num2str(timeEncoder,'%1.3f') ' seconds.'])
-disp(['Time Decoder :       ' num2str(timeDecoder,'%1.3f') ' seconds.'])
-if (isequal(A,B))
-    disp('Decoder :            Success.')
-else
-    disp('Decoder :            Failed.')
-end
+% If the image is already binary, comment the next line
+img = binarizeImage(img);
 
-contextVector = generateContextVector(A);
+%Generates the contextVector
+contextVector = generateContextVector(img);
 
-%Encodes it with numberOfContexts contexts.
-tStart = tic;
-rbpp = encodeImage(A, contextVector,[im_name(1:end-4) '2.bin']);
-timeEncoder = toc(tStart);
+%Encodes it with contextVector.
+rbpp = encodeImage(img, contextVector,outputFile);
 
-tStart = tic;
-B = decodeImage([im_name(1:end-4) '2.bin']);
-timeDecoder = toc(tStart);
+%Decodes the bin file
+img_dec = decodeImage(outputFile,reconstructedImage);
 
-disp(['Image :              ' im_name(1:end-4)])
+disp(['Image :              ' imName(1:end-4)])
 disp(['Number of contexts:  ' num2str(contextVector) ''])
 disp(['Rate :               ' num2str(rbpp,'%1.3f') ' bpp.'])
-disp(['Time Encoder :       ' num2str(timeEncoder,'%1.3f') ' seconds.'])
-disp(['Time Decoder :       ' num2str(timeDecoder,'%1.3f') ' seconds.'])
-if (isequal(A,B))
+
+if (isequal(img,img_dec))
     disp('Decoder :            Success.')
 else
     disp('Decoder :            Failed.')
